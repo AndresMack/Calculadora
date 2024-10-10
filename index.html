@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Porcentajes</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f2f2f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .calculator {
+            width: 320px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            background-color: #ffffff;
+        }
+        .calculator h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1c1c1e;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .input-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .input-container input {
+            flex: 1;
+            padding: 10px;
+            font-size: 18px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            outline: none;
+            text-align: center;
+        }
+        .results {
+            font-size: 18px;
+            color: #1c1c1e;
+            text-align: left;
+        }
+        .results div {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f7f7f7;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Distribución de Gastos</h1>
+        <div class="input-container">
+            <input type="number" id="amount" placeholder="Ingrese un monto" oninput="calculateDistribution()">
+        </div>
+        <div class="results" id="results">
+            <div>Ahorro (40%): $0</div>
+            <div>Gastos (30%): $0</div>
+            <div>Deuda (20%): $0</div>
+            <div>Gustos (10%): $0</div>
+        </div>
+    </div>
+
+    <script>
+        function calculateDistribution() {
+            const amount = parseFloat(document.getElementById('amount').value) || 0;
+            const ahorro = (amount * 0.40).toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+            const gastos = (amount * 0.30).toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+            const deuda = (amount * 0.20).toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+            const gustos = (amount * 0.10).toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+            
+            document.getElementById('results').innerHTML = `
+                <div>Ahorro (40%): $${ahorro}</div>
+                <div>Gastos (30%): $${gastos}</div>
+                <div>Deuda (20%): $${deuda}</div>
+                <div>Gustos (10%): $${gustos}</div>
+            `;
+        }
+    </script>
+</body>
+</html>
